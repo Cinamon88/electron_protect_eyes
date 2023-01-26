@@ -18,14 +18,14 @@ const App = () => {
         setTime(time => time - 1);
       }, 1000)
     );
-  }
+  };
 
   const stopTimer = () => {
     setTimer(null);
     setTime(null);
     setStatus('off');
     clearInterval(timer);
-  }
+  };
   
   useEffect(() => {
     if (time === 0) {
@@ -38,6 +38,10 @@ const App = () => {
       }
     }
   }, [time]);
+
+  const closeApp = () => {
+    window.close();
+  };
 
   return (
     <div>
@@ -57,7 +61,7 @@ const App = () => {
       )}
       { status === 'off' && (<button className="btn" onClick={startTimer}>Start</button>)}
       { status !== 'off' && (<button className="btn" onClick={stopTimer}>Stop</button>)}
-      <button className="btn btn-close">X</button>
+      <button className="btn btn-close" onClick={closeApp}>X</button>
     </div>
   );
   
