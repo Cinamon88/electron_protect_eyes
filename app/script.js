@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 
 const App = () => {
@@ -13,11 +13,25 @@ const App = () => {
   const startTimer = () => {
     setTime(1200);
     setStatus('work');
-    setTimer(setInterval(() => {
-      setTime(time => time + 1);
-    }));
+    setTimer(
+      setInterval(() => {
+        setTime(time => time - 1);
+      }, 1000)
+    );
   }
   
+  useEffect(() => {
+    if (time === 0) {
+      if (status === 'work') {
+        setStatus('rest');
+        setTime(20);
+      } else {
+        setStatus('work');
+        setTime(1200);
+      }
+    }
+  }, [time]);
+
   return (
     <div>
       <h1>Protect your eyes</h1>
