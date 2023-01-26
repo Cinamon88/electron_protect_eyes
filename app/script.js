@@ -7,6 +7,8 @@ const App = () => {
   const [time, setTime] = useState(null);
   const [timer, setTimer] = useState(null);
 
+  let seconds = String(Math.floor(time % 60)).padStart(2, '0');
+  let minutes = String(Math.floor(time / 60)).padStart(2, '0');
   
     return (
       <div>
